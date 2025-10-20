@@ -130,3 +130,4 @@ C:\Users\bulat\RiderProjects\LibraryAPI\LibraryAPI\bin\Debug\net9.0\Swashbuckle.
 C:\Users\bulat\RiderProjects\LibraryAPI\LibraryAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\bulat\RiderProjects\LibraryAPI\LibraryAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\bulat\RiderProjects\LibraryAPI\LibraryAPI\obj\Debug\net9.0\LibraryAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\bulat\RiderProjects\LibraryAPI\LibraryAPI\obj\Debug\net9.0\LibraryAPI.sourcelink.json
