@@ -50,8 +50,8 @@ public class ServiceLibrary : IServiceLibrary
         {
             User = new User()
             {
-                name = newUser.Name,
                 description = newUser.Description,
+                name = newUser.Name,
             },
             password = newUser.Password,
             login = newUser.Login
@@ -67,7 +67,7 @@ public class ServiceLibrary : IServiceLibrary
         });
     }
     
-    public async Task<IActionResult> EditUserAndLoginAsync(int id, QueryUsers selectedUser)
+    public async Task<IActionResult> UpdateUserAndLoginAsync(int id, QueryUsers selectedUser)
     {
         var existingLogin = await _contextDatabase.Logins
             .Include(l => l.User)

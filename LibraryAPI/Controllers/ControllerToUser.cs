@@ -7,7 +7,7 @@ namespace LibraryAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ControllerToUser
+public class ControllerToUser : ControllerBase
 {
     private readonly IServiceLibrary _service;
     public ControllerToUser(IServiceLibrary service) => _service = service;
@@ -19,12 +19,12 @@ public class ControllerToUser
     public async Task<IActionResult> GetById(int id) => await _service.GetUserByIdAsync(id);
 
     [HttpPost]
-    public async Task<IActionResult> Create(QueryUsers users) => await _service.CreateUserAsync(users);
+    public async Task<IActionResult> Create(QueryUsers users) => await _service.CreateNewUserAndLoginAsync(users);
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, QueryUsers users) =>
-        await _service.UpdateUserAsync(id, users);
+        await _service.UpdateUserAndLoginAsync(id, users);
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id) => await _service.DeleteUserAsync(id);
+    public async Task<IActionResult> Delete(int id) => await _service.DeleteUserAndLoginAsync(id);
 }

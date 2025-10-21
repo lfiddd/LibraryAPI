@@ -8,6 +8,8 @@ namespace LibraryAPI.Models;
 public class BookRent
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
     public int id_rent { get; set; }
     public DateOnly date_start { get; set; }
     public DateOnly? date_end { get; set; }

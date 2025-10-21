@@ -6,6 +6,8 @@ namespace LibraryAPI.Models;
 public class Book
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    
     public int id_book { get; set; }
     
     public string bookname { get; set; }

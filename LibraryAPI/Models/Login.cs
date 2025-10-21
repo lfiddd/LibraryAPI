@@ -6,6 +6,7 @@ namespace LibraryAPI.Models;
 public class Login
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int id_login { get; set; }
     
     public string login { get; set; }
