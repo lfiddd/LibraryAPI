@@ -7,5 +7,5 @@ public class QueryBooks
     public int cost { get; set; }
     public string description { get; set; }
 
-    public string genre_name { get; set; }
+    public int id_genre { get; set; }
 }

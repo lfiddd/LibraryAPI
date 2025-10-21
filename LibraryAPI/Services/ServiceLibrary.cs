@@ -50,8 +50,8 @@ public class ServiceLibrary : IServiceLibrary
         {
             User = new User()
             {
-                description = newUser.Description,
                 name = newUser.Name,
+                description = newUser.Description,
             },
             password = newUser.Password,
             login = newUser.Login
@@ -140,7 +140,7 @@ public class ServiceLibrary : IServiceLibrary
 
     public async Task<IActionResult> CreateBookAsync(QueryBooks book)
     {
-        var genre = await _contextDatabase.Genres.FirstOrDefaultAsync(g => g.name == book.genre_name);
+        var genre = await _contextDatabase.Genres.FirstOrDefaultAsync(g => g.id_genre == book.id_genre);
         if (genre == null) return new BadRequestObjectResult(new { status = false, message = "Genre not found." });
 
         var newBook = new Book
@@ -163,7 +163,7 @@ public class ServiceLibrary : IServiceLibrary
         var existing = await _contextDatabase.Books.FindAsync(id);
         if (existing == null) return new NotFoundObjectResult(new { status = false, message = "Book not found." });
 
-        var genre = await _contextDatabase.Genres.FirstOrDefaultAsync(g => g.name == book.genre_name);
+        var genre = await _contextDatabase.Genres.FirstOrDefaultAsync(g => g.id_genre == book.id_genre);
         if (genre == null) return new BadRequestObjectResult(new { status = false, message = "Genre not found." });
 
         existing.cost = book.cost;

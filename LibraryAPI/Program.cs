@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using LibraryAPI.DatabaseContext;
 using LibraryAPI.Services;
 using LibraryAPI.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,10 @@ builder.Services.AddDbContext<ContextDataBase>(options =>
 
 builder.Services.AddScoped<IServiceLibrary, ServiceLibrary>();
 
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 var app = builder.Build();
 

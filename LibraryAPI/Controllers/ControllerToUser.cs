@@ -1,4 +1,5 @@
 ﻿using LibraryAPI.Interfaces;
+using LibraryAPI.Models;
 using LibraryAPI.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +19,11 @@ public class ControllerToUser
     public async Task<IActionResult> GetById(int id) => await _service.GetUserByIdAsync(id);
 
     [HttpPost]
-    public async Task<IActionResult> Create(QueryUsers reader) => await _service.CreateUserAsync(reader);
+    public async Task<IActionResult> Create(QueryUsers users) => await _service.CreateUserAsync(users);
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, QueryUsers reader) =>
-        await _service.UpdateUserAsync(id, reader);
+    public async Task<IActionResult> Update(int id, QueryUsers users) =>
+        await _service.UpdateUserAsync(id, users);
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id) => await _service.DeleteUserAsync(id);
