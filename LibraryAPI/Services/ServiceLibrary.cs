@@ -285,23 +285,28 @@ public class ServiceLibrary : IServiceLibrary
         if (User == null) return new NotFoundObjectResult(new { status = false, message = "User not found." });
         if (book == null) return new NotFoundObjectResult(new { status = false, message = "Book not found." });
         
-        bool alreadyRented = await _contextDatabase.BookRents
-            .AnyAsync(r => r.id_user == rentalStart.id_user && r.id_book == rentalStart.id_book);
-
-        if (alreadyRented)
+        bool isRented = await _contextDatabase.BookRents
+            .AnyAsync(r => r.id_book == rentalStart.id_book
+                           && r.date_end == null);
+        if (isRented)
         {
-            return new NotFoundObjectResult(new { status = false, message = "This book already rented by this user." });
+            return new NotFoundObjectResult(new { status = false, message = "This book already rented by this/another user." });
         }
         
-        var newRental = new BookRent()
+        
+        else
         {
-            id_user = rentalStart.id_user,
-            id_book = rentalStart.id_book,
-            date_start = rentalStart.date_start
-        };
 
-        await _contextDatabase.BookRents.AddAsync(newRental);
-        await _contextDatabase.SaveChangesAsync();
+            var newRental = new BookRent()
+            {
+                id_user = rentalStart.id_user,
+                id_book = rentalStart.id_book,
+                date_start = rentalStart.date_start
+            };
+
+            await _contextDatabase.BookRents.AddAsync(newRental);
+            await _contextDatabase.SaveChangesAsync();
+        }
 
         return new OkObjectResult(new { status = true, message = "Book rented successfully." });
     }
